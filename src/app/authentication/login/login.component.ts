@@ -1,7 +1,10 @@
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { AppState } from '../../+state/app.state';
+import { login } from '../+state/authentication.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -23,9 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(value) {
-    this.userService.login(value.email, value.password).subscribe(user=>{
-      this.router.navigateByUrl('/dashboard');
-    })
+    this.store.dispatch(login({
+      email: value.email,
+      password: value.password
+    }));
   }
 
 }
