@@ -5,12 +5,16 @@ export const navItems: INavData[] = [
     name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
   },
   {
+    name: 'DS người dùng',
+    url: '/theme/colors',
+    icon: 'icon-drop'
+  },
+];
+
+/*
+ {
     title: true,
     name: 'Theme'
   },
@@ -248,4 +252,5 @@ export const navItems: INavData[] = [
     variant: 'danger',
     attributes: { target: '_blank', rel: 'noopener' }
   }
-];
+
+*/

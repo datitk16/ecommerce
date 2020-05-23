@@ -2,3 +2,7 @@
 @import "../variables";
 @import "~bootstrap/scss/mixins";
 @import "~@coreui/coreui/scss/variables";
+
+app-sidebar{
+  --background:blue !important;
+}
