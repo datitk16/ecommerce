@@ -7,9 +7,24 @@ export const navItems: INavData[] = [
     icon: 'icon-speedometer',
   },
   {
-    name: 'DS người dùng',
+    name: 'Quản lý sản phẩm',
     url: '/theme/colors',
-    icon: 'icon-drop'
+    icon: 'icon-layers'
+  },
+  {
+    name: 'Quản lý người dùng',
+    url: '/theme/typography',
+    icon: 'icon-user'
+  },
+  {
+    name: 'Quản lý bình luận',
+    url: '/theme/typography',
+    icon: 'icon-bubbles'
+  },
+  {
+    name: 'Danh mục sản phẩm',
+    url: '/theme/typography',
+    icon: 'icon-folder'
   },
 ];
 

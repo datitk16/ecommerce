@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { ColorsComponent } from './colors.component';
+import { ColorsComponent } from './products.component';
 import { TypographyComponent } from './typography.component';
 
 // Theme Routing
