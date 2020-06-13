@@ -46,7 +46,8 @@
               <td>{{product.account_name}}</td>
               <td>{{product.date|date:'medium'}}</td>
               <td>
-                <span class="badge badge-success">Active</span>
+                <button type="button" class="btn btn-block btn-primary">Sửa </button>
+                <button (click)="deleteProduct(product._id)" type="button" class="btn btn-block btn-primary">Xóa</button>
               </td>
             </tr>
           </tbody>

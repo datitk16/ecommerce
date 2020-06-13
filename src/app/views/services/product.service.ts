@@ -3,17 +3,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../core/constants';
 import { Observable } from 'rxjs';
+import { DeleteRequest } from '../models/request-product-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   private constrollerPath = '';
-  private getProducts = Constants.PRODUCT_URL;
+  private product_url = Constants.PRODUCT_URL;
 
   constructor(private httpClient: HttpClient) { }
 
   public getProductList(): Observable<Products> {
-    return this.httpClient.get<Products>(this.getProducts);
+    return this.httpClient.get<Products>(this.product_url);
+  }
+
+  public deleteProduct(requet: DeleteRequest) {
+    return this.httpClient.post(this.product_url + '/delete', requet);
   }
 }

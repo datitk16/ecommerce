@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 
 export class ProductItem {
+  _id: string;
   image: any;
   account_id: string;
   account_name: string;
