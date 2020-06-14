@@ -3,7 +3,8 @@ import { ProductService } from '../services/product.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Products } from '../models/product-item.model';
 import Swal from 'sweetalert2'
-import { DeleteRequest } from '../models/request-product-model';
+import { DeleteRequest, SearchRequest } from '../models/request-product-model';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   templateUrl: 'products.component.html',
@@ -12,15 +13,33 @@ import { DeleteRequest } from '../models/request-product-model';
 export class ColorsComponent implements OnInit, OnDestroy {
   products = new Products();
   requestDelete = new DeleteRequest();
-  constructor(private productService: ProductService) { }
+  requestSearch = new SearchRequest();
+  productForm: FormGroup;
+
+  constructor(
+    private productService: ProductService,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
-    this.refetch();
+    this.productForm = this.fb.group({
+      keyword: '',
+      category: ''
+    });
+
+    this.refresh();
   }
   ngOnDestroy() { }
 
-  refetch() {
+  refresh() {
     this.productService.getProductList().pipe(untilDestroyed(this)).subscribe(products => {
+      this.products = products;
+    });
+  }
+
+  submit(data) {
+    this.requestSearch.subject = data.keyword;
+    this.productService.searchProduct(this.requestSearch).pipe(untilDestroyed(this)).subscribe(products => {
       this.products = products;
     });
   }
@@ -38,7 +57,7 @@ export class ColorsComponent implements OnInit, OnDestroy {
       if (result.value) {
         this.requestDelete.id = id;
         this.productService.deleteProduct(this.requestDelete).subscribe(() => {
-          this.refetch();
+          this.refresh();
         })
         Swal.fire(
           'Đã xóa!',

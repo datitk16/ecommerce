@@ -5,8 +5,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { login, loginFailed, customerProfileLoaded, authenticated, loadCustomerProfile } from './authentication.actions';
-import { filter, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { CookieService } from 'ngx-cookie-service';
+import {  mergeMap, switchMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -46,6 +45,5 @@ export class AuthenticationEffects {
     private actions$: Actions,
     private userService: UserService,
     private router: Router,
-    private cookieService: CookieService,
   ) { }
 }
