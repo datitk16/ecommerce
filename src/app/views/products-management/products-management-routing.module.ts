@@ -1,34 +1,34 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ColorsComponent } from './products.component';
+import { ProductsComponent } from './products.component';
 import { TypographyComponent } from './typography.component';
 
 const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Theme'
+      title: 'Management Product'
     },
     children: [
       {
         path: '',
-        redirectTo: 'colors'
+        redirectTo: 'products-management'
       },
       {
-        path: 'colors',
-        component: ColorsComponent,
+        path: '',
+        component: ProductsComponent,
         data: {
-          title: 'Colors'
+          title: 'Product Management'
         }
       },
-      {
-        path: 'typography',
-        component: TypographyComponent,
-        data: {
-          title: 'Typography'
-        }
-      }
+      // {
+      //   path: 'typography',
+      //   component: TypographyComponent,
+      //   data: {
+      //     title: 'Typography'
+      //   }
+      // }
     ]
   }
 ];

@@ -1,30 +1,42 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { Products } from '../models/product-item.model';
+import { Products } from '../models/product.model';
 import Swal from 'sweetalert2'
-import { DeleteRequest, SearchRequest } from '../models/request-product-model';
+import { DeleteRequest, SearchProductRequest } from '../models/product-request-model';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CategoriesService } from '../services/categories.service';
+import { CategoryLevel1 } from '../models/categoryLevel1.model';
+import { CategoryLevel2Request } from '../models/categoryLevel2-request.model';
+import { CategoryLevel2 } from '../models/categoryLevel2.model';
 
 @Component({
   templateUrl: 'products.component.html',
   styleUrls: ['./products.component.css'],
 })
-export class ColorsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit, OnDestroy {
   products = new Products();
   requestDelete = new DeleteRequest();
-  requestSearch = new SearchRequest();
+  requestSearch = new SearchProductRequest();
   productForm: FormGroup;
+  categoryLevel1 = new CategoryLevel1();
+  categoryLevel2 = new CategoryLevel2();
+  categoryLeve2Request = new CategoryLevel2Request();
 
   constructor(
     private productService: ProductService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
       keyword: '',
       category: ''
+    });
+
+    this.categoriesService.getCategoryLevel1().subscribe((category) => {
+      this.categoryLevel1 = category;
     });
 
     this.refresh();
@@ -67,4 +79,12 @@ export class ColorsComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  selectedCategoryLevel1(id) {
+    this.categoryLeve2Request.cateLeve1Id = id;
+    this.categoriesService.getCategoryLevel2(this.categoryLeve2Request).subscribe(category => {
+      this.categoryLevel2 = category;
+    })
+  }
+
 }

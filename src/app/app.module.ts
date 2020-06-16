@@ -7,10 +7,6 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
-
 import { AppComponent } from './app.component';
 
 // Import containers
@@ -43,6 +39,7 @@ import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   imports: [
@@ -61,7 +58,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AuthenticationModule
+    AuthenticationModule,
+    CoreModule,
   ],
   declarations: [
     AppComponent,

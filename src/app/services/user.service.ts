@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class UserService {
   private _token: string;
   private loginUrl = Constants.AUTH_URL + '/login';
-  private cookiesCustomerKey = 'customer'
+  private cookiesCustomerKey = 'customer';
   constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
   login(email: string, password: string): Observable<Customer> {

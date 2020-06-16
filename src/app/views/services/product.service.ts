@@ -1,9 +1,9 @@
-import { Products } from './../models/product-item.model';
+import { Products } from '../models/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../core/constants';
 import { Observable } from 'rxjs';
-import { DeleteRequest, SearchRequest } from '../models/request-product-model';
+import { DeleteRequest, SearchProductRequest } from '../models/product-request-model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,8 @@ export class ProductService {
     return this.httpClient.post(this.product_url + '/delete', request);
   }
 
-  public searchProduct(request: SearchRequest): Observable<Products> {
-    console.log(request)
+  public searchProduct(request: SearchProductRequest): Observable<Products> {
     return this.httpClient.post<Products>(this.product_url + '/search', request);
   }
+
 }

@@ -1,0 +1,78 @@
+<form [formGroup]="customerForm" (ngSubmit)=" submit(customerForm.value)" method="post" class="form-horizontal">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <div class="input-group">
+            <input type="email" formControlName="email" id="input2-group2" required name="input2-group2"
+              class="form-control" placeholder="Email" autocomplete="email">
+            <span class="input-group-append">
+              <button type="submit" [disabled]="!customerForm.valid" class="btn btn-primary"><i
+                  class="fa fa-search"></i>
+                Tìm kiếm</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <button type="button" (click)="refresh()" class="btn btn-primary"><i class="fa fa-refresh"></i> Làm mới</button>
+    </div>
+    <div class="col-lg-1">
+      <button type="button" (click)="toggleForm()" class="btn btn-primary"><i class="fa fa-address-book-o"></i> <span
+          *ngIf="!isshowForm">Thêm</span> <span *ngIf="isshowForm">Danh sách</span>
+      </button>
+    </div>
+    <div class="col-lg-3">
+    </div>
+  </div>
+</form>
+<div class="row">
+  <div class="col-lg-12" *ngIf="!isshowForm">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Management Users
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Họ tên</th>
+              <th>Số điện thoại</th>
+              <th>Loại người dùng</th>
+              <th>Hình Ảnh</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of customers.items">
+              <td>{{item.email}}</td>
+              <td>{{item.fullName}}</td>
+              <td>{{item.phoneNumber}}</td>
+              <td>{{item.userType}}</td>
+              <td>{{item.avatar}}</td>
+              <td>
+                <button type="button" class="btn btn-block btn-primary" (click)="editCustom()">Sửa </button>
+                <button type="button" (click)="deleteProduct()" class="btn btn-block btn-primary">Xóa</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12" *ngIf="isshowForm">
+    <app-create-customer></app-create-customer>
+  </div>
+</div>

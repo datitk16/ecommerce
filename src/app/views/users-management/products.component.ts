@@ -1,10 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
 
 @Component({
-  templateUrl: 'dropdowns.component.html',
-  styleUrls: ['dropdowns.component.css']
+  templateUrl: 'products.component.html',
+  styleUrls: ['products.component.css']
 })
-export class DropdownsComponent implements OnDestroy {
+export class ProductsComponent implements OnDestroy {
 
   status: { isOpen: boolean } = { isOpen: false };
   disabled: boolean = false;

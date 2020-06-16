@@ -4,8 +4,7 @@ import { HttpRequest } from '@angular/common/http';
 export class Utils {
 
   static addValuesToHeader(request: HttpRequest<any>, token: string): HttpRequest<any> {
-    let headers = request.headers.set("Authorization", `Bearer ${token}`);
-    headers = headers.set("CurrentTimezone", Utils.currentTimezone().toString());
+    let headers = request.headers.set("Token", `${token}`);
     return request.clone({ headers });
   }
 

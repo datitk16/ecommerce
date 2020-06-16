@@ -20,10 +20,10 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token: string = this.userService.getToken;
-    if (!token) {
-      // Prevent infinite intercept loop!
-      return next.handle(req);
-    }
+    // if (!token) {
+    //   // Prevent infinite intercept loop!
+    //   return next.handle(req);
+    // }
     return next.handle(Utils.addValuesToHeader(req, this.userService.getToken));
   }
 }

@@ -3,6 +3,7 @@ export class DeleteRequest {
 }
 
 
-export class SearchRequest {
+export class SearchProductRequest {
   subject: string;
 }
+

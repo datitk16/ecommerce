@@ -18,11 +18,18 @@
       <button type="button" class="btn btn-primary" (click)="refresh()"><i class="fa fa-refresh"></i> Refresh</button>
     </div>
     <div class="col-lg-3">
-      <select formControlName="category" id="disabledSelect" class="form-control">
-        <option value="0">Please select</option>
-        <option value="1">Option #1</option>
-        <option value="2">Option #2</option>
-        <option value="3">Option #3</option>
+      <select (change)="selectedCategoryLevel1($event.target.value)" id="disabledSelect"
+        class="form-control">
+        <option value="" disabled>Chọn danh mục cấp 1</option>
+        <option *ngFor="let categorieslv1 of categoryLevel1.items" [value]="categorieslv1._id">{{categorieslv1.name}}
+        </option>
+      </select>
+    </div>
+    <div class="col-lg-3">
+      <select [disabled]="!categoryLevel2.items" class="form-control">
+        <option value="" disabled>Chọn danh mục cấp 2</option>
+        <option *ngFor="let categorieslv2 of categoryLevel2.items" [ngValue]="categorieslv2._id">{{categorieslv2.name}}
+        </option>
       </select>
     </div>
   </div>

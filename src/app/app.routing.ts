@@ -13,7 +13,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
@@ -57,8 +57,8 @@ export const routes: Routes = [
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
       },
       {
-        path: 'buttons',
-        loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)
+        path: 'users-management',
+        loadChildren: () => import('./views/users-management/account.module').then(m => m.AccountModule)
       },
       {
         path: 'charts',
@@ -77,8 +77,8 @@ export const routes: Routes = [
         loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
       },
       {
-        path: 'theme',
-        loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
+        path: 'products-management',
+        loadChildren: () => import('./views/products-management/product-management.module').then(m => m.ThemeModule)
       },
       {
         path: 'widgets',

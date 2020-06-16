@@ -8,13 +8,30 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Quản lý sản phẩm',
-    url: '/theme/colors',
+    url: '/products-management',
     icon: 'icon-layers'
   },
   {
     name: 'Quản lý người dùng',
-    url: '/theme/typography',
-    icon: 'icon-user'
+    url: '/users-management',
+    icon: 'icon-user',
+    children: [
+      {
+        name: 'Tài khoản cần xác thực',
+        url: '/users-management/verify-account',
+        icon: '  '
+      },
+      {
+        name: 'Bài đăng cần xác thực',
+        url: '/users-management/verify-product',
+        icon: '  '
+      },
+      {
+        name: 'Người dùng',
+        url: '/users-management/user',
+        icon: '  '
+      }
+    ]
   },
   {
     name: 'Quản lý bình luận',
@@ -25,7 +42,8 @@ export const navItems: INavData[] = [
     name: 'Danh mục sản phẩm',
     url: '/theme/typography',
     icon: 'icon-folder'
-  },
+  }
+
 ];
 
 /*
