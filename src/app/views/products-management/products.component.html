@@ -17,6 +17,10 @@
     <div class="col-lg-1">
       <button type="button" class="btn btn-primary" (click)="refresh()"><i class="fa fa-refresh"></i> Refresh</button>
     </div>
+    <div class="col-lg-1">
+      <button type="button" (click)="toggleForm()" class="btn btn-primary"><i class="fa fa-address-book-o"></i> Thêm
+      </button>
+    </div>
     <div class="col-lg-3">
       <select (change)="selectedCategoryLevel1($event.target.value)" id="disabledSelect"
         class="form-control">
@@ -35,7 +39,7 @@
   </div>
 </form>
 <div class="row">
-  <div class="col-lg-12">
+  <div *ngIf="!isshowForm" class="col-lg-12">
     <div class="card">
       <div class="card-header">
         <i class="fa fa-align-justify"></i> Bordered Table
@@ -51,7 +55,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of products.items">
+            <tr *ngFor="let product of products">
               <td>{{product.subject}}</td>
               <td>{{product.account_name}}</td>
               <td>{{product.date|date:'medium'}}</td>
@@ -75,5 +79,8 @@
         </ul>
       </div>
     </div>
+  </div>
+  <div *ngIf="isshowForm" class="col-md-12">
+    <app-create-product [categorylevel1]="categoryLevel1"></app-create-product>
   </div>
 </div>

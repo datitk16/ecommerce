@@ -22,3 +22,7 @@ export const customerProfileLoaded = createAction(
   '[Authentication] Customer Profile Loaded',
   props<{ customer: Customer }>()
 );
+
+export const logout = createAction(
+  '[Authentication] Logout',
+);

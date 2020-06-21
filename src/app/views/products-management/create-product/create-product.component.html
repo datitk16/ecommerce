@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-header">
+    <strong>Sản phẩm</strong>
+    <small>Thêm mới sản phẩm</small>
+  </div>
+  <div class="card-body">
+    <div class="col-lg-6">
+      <form [formGroup]="createProductForm" (ngSubmit)="submit(createProductForm.value)">
+        <div class="form-group">
+          <label for="company">Danh mục sản phẩm</label>
+          <select (change)="selectedCategoryLevel1($event.target.value)" formControlName="category_id"
+            id="disabledSelect" class="form-control" required>
+            <option value="" disabled>Chọn danh mục cấp 1</option>
+            <option *ngFor="let categorieslv1 of categoryLevel1.items" [value]="categorieslv1._id">
+              {{categorieslv1.name}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="company">Chi tiết sản phẩm</label>
+          <select formControlName="category_id_2" class="form-control" required>
+            <option value="" disabled>Chọn danh mục cấp 2</option>
+            <option *ngFor="let categorieslv2 of categoryLevel2.items" [ngValue]="categorieslv2._id">
+              {{categorieslv2.name}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group ">
+          <label for="city">Tên sản phẩm</label>
+          <input type="text" required class="form-control" formControlName="subject" id="city" placeholder="Nhập tên sản phẩm">
+        </div>
+        <div class="form-group">
+          <label for="company">Chọn thành phố </label>
+          <select formControlName="city_id" (change)="selectedCity($event.target.value)" id="disabledSelect"
+            class="form-control" required>
+            <option value="" disabled>Chọn Tỉnh/TP</option>
+            <option *ngFor="let city of cities" [value]="city.ID">
+              {{city.Title}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="company">Chọn quận huyện</label>
+          <select formControlName="ward_id" required class="form-control">
+
+            <option value="" disabled>Chọn quận/Huyện</option>
+            <option *ngFor="let ward of wards" [ngValue]="ward.ID">
+              {{ward.Title}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="company">Giá sản phẩm</label>
+          <input type="text" required formControlName="price_string" class="form-control" id="company"
+            placeholder="Nhập giá bán">
+        </div>
+        <div class="form-group ">
+          <label for="city">Số điện thoại</label>
+          <input type="text" required class="form-control" formControlName="phone" id="city" placeholder="Nhập số điện thoại">
+        </div>
+        <div class="form-group ">
+          <label class="col-form-label" for="textarea-input">Mô tả sản phẩm</label>
+          <textarea formControlName="body" id="textarea-input" name="textarea-input" rows="5" class="form-control"
+            placeholder="Nội dung.."></textarea>
+        </div>
+        <div class="form-group d-flex btn-submit">
+          <button [disabled]="!createProductForm.valid" type="submit" class="btn btn-primary">Tạo mới</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

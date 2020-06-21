@@ -11,3 +11,6 @@ export class CreateCustomerRequest {
   avatar: string;
 }
 
+export class DeleteCustomerRequest {
+  id: string;
+}

@@ -4,8 +4,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { login, loginFailed, customerProfileLoaded, authenticated, loadCustomerProfile } from './authentication.actions';
-import {  mergeMap, switchMap, tap } from 'rxjs/operators';
+import { login, loginFailed, customerProfileLoaded, authenticated, loadCustomerProfile, logout } from './authentication.actions';
+import { mergeMap, switchMap, tap, throttleTime } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -39,6 +40,15 @@ export class AuthenticationEffects {
       ])
     )
   );
+
+  logout$ = createEffect(() => this.actions$.pipe(
+    ofType(logout),
+    throttleTime(1000),
+    switchMap(() => {
+      this.userService.logout();
+      return of(null);
+    })
+  ), { dispatch: false });
 
   constructor(
     private store: Store<AppState>,

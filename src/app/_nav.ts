@@ -42,7 +42,8 @@ export const navItems: INavData[] = [
     name: 'Danh mục sản phẩm',
     url: '/theme/typography',
     icon: 'icon-folder'
-  }
+  },
+
 
 ];
 

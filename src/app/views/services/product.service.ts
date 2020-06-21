@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../core/constants';
 import { Observable } from 'rxjs';
-import { DeleteRequest, SearchProductRequest } from '../models/product-request-model';
+import { DeleteRequest, SearchProductRequest, CreateProductRequest } from '../models/product-request-model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +26,7 @@ export class ProductService {
     return this.httpClient.post<Products>(this.product_url + '/search', request);
   }
 
+  public createProduct(request: CreateProductRequest): Observable<Products> {
+    return this.httpClient.post<Products>(this.product_url, request);
+  }
 }

@@ -3,7 +3,7 @@ import { CustomerService } from '../services/customer.service';
 import Swal from 'sweetalert2'
 import { Customers } from '../models/customer.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { SearchCustomerRequest } from '../models/customer-request.model';
+import { SearchCustomerRequest, DeleteCustomerRequest } from '../models/customer-request.model';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
@@ -16,6 +16,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   requestSearch = new SearchCustomerRequest();
   isshowForm: boolean = false;
   isEditCustomer = false;
+  requestDelete = new DeleteCustomerRequest();
   constructor(
     private customerService: CustomerService,
     private fb: FormBuilder
@@ -43,7 +44,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     }));
   }
 
-  deleteProduct() {
+  deleteProduct(id) {
     Swal.fire({
       title: 'Xác nhận?',
       text: "Bạn muốn xóa sản phẩm!",
@@ -54,6 +55,10 @@ export class UsersComponent implements OnInit, OnDestroy {
       confirmButtonText: 'Xóa!'
     }).then((result) => {
       if (result.value) {
+        this.requestDelete.id = id;
+        this.customerService.deleteCustomer(this.requestDelete).subscribe(() => {
+          this.refresh();
+        })
         Swal.fire(
           'Đã xóa!',
           'Bạn đã xóa sản phẩm này ra khỏi danh sách',

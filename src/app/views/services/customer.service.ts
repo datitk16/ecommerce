@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../core/constants';
 import { Observable } from 'rxjs/internal/Observable';
-import { SearchCustomerRequest, CreateCustomerRequest } from '../models/customer-request.model';
+import { SearchCustomerRequest, CreateCustomerRequest, DeleteCustomerRequest } from '../models/customer-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +27,7 @@ export class CustomerService {
     return this.httpClient.post<Customers>(this.user_url, request);
   }
 
+  public deleteCustomer(request: DeleteCustomerRequest){
+    return this.httpClient.post(this.user_url + '/delete', request);
+  }
 }

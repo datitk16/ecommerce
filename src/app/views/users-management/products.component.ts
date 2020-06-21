@@ -1,45 +1,98 @@
-import {Component, OnDestroy} from '@angular/core';
+import { ProductItem, Products } from './../models/product.model';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ProductService } from '../services/product.service';
+import { untilDestroyed } from 'ngx-take-until-destroy';
+import Swal from 'sweetalert2'
+import { DeleteRequest, SearchProductRequest } from '../models/product-request-model';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { CategoriesService } from '../services/categories.service';
+import { CategoryLevel1 } from '../models/categoryLevel1.model';
+import { CategoryLevel2Request } from '../models/categoryLevel2-request.model';
+import { CategoryLevel2 } from '../models/categoryLevel2.model';
+import { plainToClass } from 'class-transformer';
 
 @Component({
   templateUrl: 'products.component.html',
-  styleUrls: ['products.component.css']
+  styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnDestroy {
+export class ProductsComponent implements OnInit, OnDestroy {
+  products: ProductItem[] = [];
+  requestDelete = new DeleteRequest();
+  requestSearch = new SearchProductRequest();
+  productForm: FormGroup;
+  categoryLevel1 = new CategoryLevel1();
+  categoryLevel2 = new CategoryLevel2();
+  categoryLeve2Request = new CategoryLevel2Request();
+  isshowForm: boolean = false;
+  constructor(
+    private productService: ProductService,
+    private fb: FormBuilder,
+    private categoriesService: CategoriesService
+  ) { }
 
-  status: { isOpen: boolean } = { isOpen: false };
-  disabled: boolean = false;
-  isDropup: boolean = true;
-  autoClose: boolean = false;
+  ngOnInit(): void {
+    this.productForm = this.fb.group({
+      keyword: '',
+      category: ''
+    });
 
-  items: string[] = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
-  ];
+    this.categoriesService.getCategoryLevel1().subscribe((category) => {
+      this.categoryLevel1 = category;
+    });
 
-  constructor() { }
+    this.refresh();
+  }
+  ngOnDestroy() { }
 
-  ngOnDestroy () {
-    this.status.isOpen = false;
+  refresh() {
+    this.productService.getProductList().pipe(untilDestroyed(this)).subscribe(products => {
+      plainToClass(Products, products);
+      this.products = products.items.filter(x => !x.authenticate);
+    });
+
   }
 
-  onHidden(): void {
-    console.log('Dropdown is hidden');
-  }
-  onShown(): void {
-    console.log('Dropdown is shown');
-  }
-  isOpenChange(): void {
-    console.log('Dropdown state is changed');
+  submit(data) {
+    this.requestSearch.subject = data.keyword;
+    this.productService.searchProduct(this.requestSearch).pipe(untilDestroyed(this)).subscribe(products => {
+      this.products = products.items;
+    });
   }
 
-  toggleDropdown($event: MouseEvent): void {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.status.isOpen = !this.status.isOpen;
+  deleteProduct(id) {
+    Swal.fire({
+      title: 'Xác nhận?',
+      text: "Bạn muốn xóa sản phẩm!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Xóa!'
+    }).then((result) => {
+      if (result.value) {
+        this.requestDelete.id = id;
+        this.productService.deleteProduct(this.requestDelete).subscribe(() => {
+          this.refresh();
+        })
+        Swal.fire(
+          'Đã xóa!',
+          'Bạn đã xóa sản phẩm này ra khỏi danh sách',
+          'success'
+        )
+      }
+    })
   }
 
-  change(value: boolean): void {
-    this.status.isOpen = value;
+  selectedCategoryLevel1(id) {
+    this.categoryLeve2Request.cateLeve1Id = id;
+    this.categoriesService.getCategoryLevel2(this.categoryLeve2Request).subscribe(category => {
+      this.categoryLevel2 = category;
+    })
   }
+
+  toggleForm() {
+    this.isshowForm = !this.isshowForm;
+    this.refresh();
+  }
+
 }

@@ -1,213 +1,90 @@
-<div class="animated fadeIn">
+<form action="" method="post" [formGroup]="productForm" (ngSubmit)="submit(productForm.value)" class="form-horizontal">
   <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Bootstrap Dropdowns
-          <div class="card-header-actions">
-            <a href="https://valor-software.com/ngx-bootstrap/#/dropdowns" target="_blank">
-              <small className="text-muted">docs</small>
-            </a>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="btn-group" dropdown>
-            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-              Button dropdown <span class="caret"></span>
-            </button>
-            <ul *dropdownMenu class="dropdown-menu" role="menu">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-              </li>
-            </ul>
+    <div class="col-lg-3">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <div class="input-group">
+            <input type="email" formControlName="keyword" id="input2-group2" required name="input2-group2"
+              class="form-control" placeholder="Email" autocomplete="email">
+            <span class="input-group-append">
+              <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary"><i class="fa fa-search"></i>
+                Search</button>
+            </span>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Dropdowns
-          <small>trigger by <code>&lt;a&gt;</code></small>
-        </div>
-        <div class="card-body">
-      <span dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()">
-        <a href dropdownToggle (click)="false">Click me for a dropdown, yo!</a>
-          <ul *dropdownMenu class="dropdown-menu">
-            <li *ngFor="let choice of items">
-              <a class="dropdown-item" href="#">{{choice}}</a>
-            </li>
-          </ul>
-      </span>
-        </div>
-      </div>
+    <div class="col-lg-1">
+      <button type="button" class="btn btn-primary" (click)="refresh()"><i class="fa fa-refresh"></i> Refresh</button>
+    </div>
+    <div class="col-lg-1">
+      <button type="button" (click)="toggleForm()" class="btn btn-primary"><i class="fa fa-address-book-o"></i> Thêm
+      </button>
+    </div>
+    <div class="col-lg-3">
+      <select (change)="selectedCategoryLevel1($event.target.value)" id="disabledSelect"
+        class="form-control">
+        <option value="" disabled>Chọn danh mục cấp 1</option>
+        <option *ngFor="let categorieslv1 of categoryLevel1.items" [value]="categorieslv1._id">{{categorieslv1.name}}
+        </option>
+      </select>
+    </div>
+    <div class="col-lg-3">
+      <select [disabled]="!categoryLevel2.items" class="form-control">
+        <option value="" disabled>Chọn danh mục cấp 2</option>
+        <option *ngFor="let categorieslv2 of categoryLevel2.items" [ngValue]="categorieslv2._id">{{categorieslv2.name}}
+        </option>
+      </select>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Dropdowns
-          <small>split button</small>
-        </div>
-        <div class="card-body">
-          <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-danger">Action</button>
-            <button type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split">
-              <span class="caret"></span>
-              <span class="sr-only">Split button!</span>
-            </button>
-            <ul *dropdownMenu class="dropdown-menu" role="menu">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else
-                here</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+</form>
+<div class="row">
+  <div *ngIf="!isshowForm" class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Bordered Table
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Dropdowns
-          <small>manual triggers</small>
-        </div>
-        <div class="card-body">
-          <div class="btn-group" dropdown [isOpen]="status.isOpen" (isOpenChange)="change($event)" placement="top">
-            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-              Button dropdown <span class="caret"></span>
-            </button>
-            <ul *dropdownMenu class="dropdown-menu" role="menu">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else
-                here</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-              </li>
-            </ul>
-          </div>
-          <button type="button" class="btn btn-primary" (click)="toggleDropdown($event)">Toggle</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Dropdowns
-          <small>disabled menu</small>
-        </div>
-        <div class="card-body">
-          <div class="btn-group" dropdown [isDisabled]="disabled">
-            <button dropdownToggle type="button" class="btn btn-primary dropdownToggle">
-              Button dropdown <span class="caret"></span>
-            </button>
-            <ul *dropdownMenu class="dropdown-menu" role="menu">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else
-                here</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-              </li>
-            </ul>
-          </div>
-          <button type="button" class="btn btn-warning" (click)="disabled = !disabled">
-            Enable/Disable
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Dropdowns
-          <small>menu alignment</small>
-        </div>
-        <div class="card-body">
-          <div class="btn-group" dropdown placement="bottom right">
-            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-              This menu is right-aligned <span class="caret"></span>
-            </button>
-            <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Dropdowns
-          <small>dropup variation</small>
-        </div>
-        <div class="card-body">
-          <div class="btn-group" dropdown [dropup]="isDropup">
-            <button id="button-dropup" dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-              Dropup <span class="caret"></span>
-            </button>
-            <ul id="dropdown-dropup" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-dropup">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else
-                here</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" value="true" [(ngModel)]="isDropup"
-                     style="display: inline-block;">
-              {{ isDropup ? 'Is dropup' : 'Is dropdown' }}
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Dropdowns
-          <small> with <code>autoClose</code></small>
-        </div>
-        <div class="card-body">
-          <div class="btn-group" dropdown [autoClose]="autoClose">
-            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-              Button dropdown <span class="caret"></span>
-            </button>
-            <ul *dropdownMenu class="dropdown-menu" role="menu">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else
-                here</a></li>
-            </ul>
-          </div>
-        </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sản phẩm</th>
+              <th>Người đăng</th>
+              <th>Danh mục </th>
+              <th>Địa chỉ</th>
+              <th>Giá bán</th>
+               <th style="width:30%">Mô tả sản phẩm</th>
+              <th>Ngày đăng</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>{{product.subject}}</td>
+              <td>{{product.account_name}}</td>
+              <td></td>
+              <td></td>
+              <td>{{product.price_string}}</td>
+              <td >{{product.body}}</td>
+              <td>{{product.date|date:'medium'}}</td>
+              <td>
+                <button type="button" class="btn btn-block btn-primary">Xác nhận </button>
+                <button (click)="deleteProduct(product._id)" type="button"
+                  class="btn btn-block btn-primary">Xóa</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">4</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
       </div>
     </div>
   </div>

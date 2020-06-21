@@ -20,6 +20,7 @@ export class ProductItem {
   subject: string;
   type_name: string;
   ward_name: string;
+  authenticate?: boolean;
 }
 
 export class Products {

@@ -1,7 +1,7 @@
+import { ProductItem, Products } from './../models/product.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { Products } from '../models/product.model';
 import Swal from 'sweetalert2'
 import { DeleteRequest, SearchProductRequest } from '../models/product-request-model';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -9,20 +9,21 @@ import { CategoriesService } from '../services/categories.service';
 import { CategoryLevel1 } from '../models/categoryLevel1.model';
 import { CategoryLevel2Request } from '../models/categoryLevel2-request.model';
 import { CategoryLevel2 } from '../models/categoryLevel2.model';
+import { plainToClass } from 'class-transformer';
 
 @Component({
   templateUrl: 'products.component.html',
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  products = new Products();
+  products: ProductItem[] = [];
   requestDelete = new DeleteRequest();
   requestSearch = new SearchProductRequest();
   productForm: FormGroup;
   categoryLevel1 = new CategoryLevel1();
   categoryLevel2 = new CategoryLevel2();
   categoryLeve2Request = new CategoryLevel2Request();
-
+  isshowForm: boolean = false;
   constructor(
     private productService: ProductService,
     private fb: FormBuilder,
@@ -45,14 +46,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   refresh() {
     this.productService.getProductList().pipe(untilDestroyed(this)).subscribe(products => {
-      this.products = products;
+      plainToClass(Products, products);
+      this.products = products.items.filter(x => x.authenticate);
     });
   }
 
   submit(data) {
     this.requestSearch.subject = data.keyword;
     this.productService.searchProduct(this.requestSearch).pipe(untilDestroyed(this)).subscribe(products => {
-      this.products = products;
+      this.products = products.items;
     });
   }
 
@@ -75,9 +77,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           'Đã xóa!',
           'Bạn đã xóa sản phẩm này ra khỏi danh sách',
           'success'
-        )
+        );
       }
-    })
+    });
   }
 
   selectedCategoryLevel1(id) {
@@ -85,6 +87,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.categoriesService.getCategoryLevel2(this.categoryLeve2Request).subscribe(category => {
       this.categoryLevel2 = category;
     })
+  }
+
+  toggleForm() {
+    this.isshowForm = !this.isshowForm;
+    this.refresh();
   }
 
 }
