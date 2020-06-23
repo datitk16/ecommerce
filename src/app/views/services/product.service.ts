@@ -1,4 +1,4 @@
-import { Products } from '../models/product.model';
+import { Products, ProductItem } from '../models/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../core/constants';
@@ -28,5 +28,9 @@ export class ProductService {
 
   public createProduct(request: CreateProductRequest): Observable<Products> {
     return this.httpClient.post<Products>(this.product_url, request);
+  }
+
+  public verifyProduct(request: DeleteRequest): Observable<ProductItem> {
+    return this.httpClient.post<ProductItem>(this.product_url + '/verify', request);
   }
 }

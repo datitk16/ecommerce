@@ -5,10 +5,11 @@
   </div>
   <div class="card-body">
     <div class="col-lg-6">
-      <form  [formGroup]="createCustomerForm" (ngSubmit)="submit(createCustomerForm.value)">
+      <form [formGroup]="createCustomerForm" (ngSubmit)="submit(createCustomerForm.value)">
         <div class="form-group">
           <label for="company">Email</label>
-          <input type="email" formControlName="email" class="form-control" id="company" placeholder="Nhập địa chỉ email">
+          <input type="email" formControlName="email" class="form-control" id="company"
+            placeholder="Nhập địa chỉ email">
         </div>
         <div class="form-group">
           <label for="vat">Password</label>
@@ -20,14 +21,22 @@
         </div>
         <div class="form-group ">
           <label for="city">Phone Number</label>
-          <input type="text" class="form-control" formControlName="phoneNumber" id="city" placeholder="Nhập số điện thoại">
+          <input type="text" class="form-control" formControlName="phoneNumber" id="city"
+            placeholder="Nhập số điện thoại">
         </div>
         <div class="form-group">
           <label for="country">User Type</label>
-          <input type="text" class="form-control" formControlName="userType" id="country" placeholder="Nhập loại người dùng">
+          <input type="text" class="form-control" formControlName="userType" id="country"
+            placeholder="Nhập loại người dùng">
+        </div>
+        <div class="form-group ">
+          <label class="col-form-label" for="file-input">Ảnh đại diện</label>
+
+          <input type="file" formControlName="avatar" id="file-input" name="file-input">
+
         </div>
         <div class="form-group d-flex btn-submit">
-          <button type="submit"  class="btn btn-primary">Tạo mới</button>
+          <button type="submit" class="btn btn-primary">Tạo mới</button>
         </div>
       </form>
     </div>

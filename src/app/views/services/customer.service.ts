@@ -1,4 +1,4 @@
-import { Customers } from '../models/customer.model';
+import { Customers, CustomerItem } from '../models/customer.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../core/constants';
@@ -27,7 +27,19 @@ export class CustomerService {
     return this.httpClient.post<Customers>(this.user_url, request);
   }
 
-  public deleteCustomer(request: DeleteCustomerRequest){
+  public deleteCustomer(request: DeleteCustomerRequest) {
     return this.httpClient.post(this.user_url + '/delete', request);
+  }
+
+  public verifyUser(request: DeleteCustomerRequest): Observable<CustomerItem> {
+    return this.httpClient.post<CustomerItem>(this.user_url + '/verify', request);
+  }
+
+  public verifyPassword(request: string):Observable<boolean> {
+    return this.httpClient.post<boolean>(this.user_url + '/verifyPassword', { password: request });
+  }
+
+  public changePassword(request: string) {
+    return this.httpClient.post(this.user_url + '/changePassword', { password: request });
   }
 }

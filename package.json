@@ -56,6 +56,7 @@
     "ngx-bootstrap": "^5.6.1",
     "ngx-cookie-service": "^3.0.4",
     "ngx-perfect-scrollbar": "^9.0.0",
+    "ngx-spinner": "^9.0.2",
     "ngx-take-until-destroy": "^5.4.0",
     "rxjs": "^6.5.5",
     "simple-line-icons": "^2.4.1",

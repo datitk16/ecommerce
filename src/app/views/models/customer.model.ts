@@ -8,6 +8,7 @@ export class CustomerItem {
   phoneNumber: string;
   userType: string;
   avatar: string;
+  authenticate?: boolean;
 }
 
 export class Customers {

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import Swal from 'sweetalert2'
-import { Customers } from '../models/customer.model';
+import { Customers, CustomerItem } from '../models/customer.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SearchCustomerRequest, DeleteCustomerRequest } from '../models/customer-request.model';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -11,7 +11,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  customers = new Customers();
+  customers: CustomerItem[] = [];
   customerForm: FormGroup;
   requestSearch = new SearchCustomerRequest();
   isshowForm: boolean = false;
@@ -40,7 +40,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   refresh() {
     this.customerService.getCustomer().pipe(untilDestroyed(this)).subscribe((customer => {
-      this.customers = customer;
+      this.customers = customer.items.filter(x => x.authenticate);
     }));
   }
 
@@ -71,9 +71,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   submit(data) {
     this.requestSearch.email = data.email;
     this.customerService.searchCustomer(this.requestSearch).pipe(untilDestroyed(this)).subscribe(customer => {
-      this.customers = customer;
-      console.log(this.customers);
-      console.log(customer);
+      this.customers = customer.items;
     });
   }
 

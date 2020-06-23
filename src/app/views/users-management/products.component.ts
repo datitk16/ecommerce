@@ -95,4 +95,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.refresh();
   }
 
+  verify(id) {
+    this.requestDelete.id = id;
+    this.productService.verifyProduct(this.requestDelete).subscribe(data => {
+     this.refresh();
+    })
+  }
 }

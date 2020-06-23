@@ -2,7 +2,7 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
-    name: 'Dashboard',
+    name: 'Bảng điều khiển',
     url: '/dashboard',
     icon: 'icon-speedometer',
   },

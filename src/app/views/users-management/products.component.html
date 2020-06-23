@@ -68,7 +68,7 @@
               <td >{{product.body}}</td>
               <td>{{product.date|date:'medium'}}</td>
               <td>
-                <button type="button" class="btn btn-block btn-primary">Xác nhận </button>
+                <button type="button" class="btn btn-block btn-primary" (click)="verify(product._id)">Xác nhận </button>
                 <button (click)="deleteProduct(product._id)" type="button"
                   class="btn btn-block btn-primary">Xóa</button>
               </td>

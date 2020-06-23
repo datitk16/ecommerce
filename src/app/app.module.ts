@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -40,7 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { CoreModule } from './core/core.module';
-
+import { ProfileComponent } from './views/profile/profile.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     BrowserModule,
@@ -60,6 +61,7 @@ import { CoreModule } from './core/core.module';
     HttpClientModule,
     AuthenticationModule,
     CoreModule,
+    NgxSpinnerModule
   ],
   declarations: [
     AppComponent,
@@ -67,12 +69,16 @@ import { CoreModule } from './core/core.module';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   }],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+]
 })
 export class AppModule { }

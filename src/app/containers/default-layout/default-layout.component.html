@@ -5,17 +5,7 @@
   [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
-  <ul class="nav navbar-nav d-md-down-none">
-    <li class="nav-item px-3">
-      <a class="nav-link" >Dashboard</a>
-    </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" >Users</a>
-    </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" >Settings</a>
-    </li>
-  </ul>
+
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
       <a class="nav-link" ><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
@@ -31,7 +21,7 @@
         <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"/>
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <a class="dropdown-item acc_info" ><i class="fa fa-user"></i> Hồ sơ</a>
+        <a class="dropdown-item acc_info" routerLink="/profile"><i class="fa fa-user"></i> Hồ sơ</a>
         <a class="dropdown-item acc_info" (click)="logout()" ><i class="fa fa-lock"></i> Đăng xuất</a>
       </div>
     </li>
@@ -51,8 +41,7 @@
       <li class="breadcrumb-menu d-md-down-none">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
           <a class="btn" ><i class="icon-speech"></i></a>
-          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-          <a class="btn" ><i class="icon-settings"></i> &nbsp;Settings</a>
+          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Bảng điều khiển</a>
         </div>
       </li>
     </cui-breadcrumb>
@@ -63,6 +52,5 @@
 
 </div>
 <app-footer>
-  <span><a href="https://coreui.io">CoreUI</a> &copy; 2018 creativeLabs.</span>
-  <span class="ml-auto">Powered by <a href="https://coreui.io/angular">CoreUI for Angular</a></span>
+  <span><a href="">Resale</a> &copy; Design 2020.</span>
 </app-footer>

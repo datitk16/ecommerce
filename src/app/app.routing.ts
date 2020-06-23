@@ -9,12 +9,14 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ProfileComponent } from './views/profile/profile.component';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
+
   },
   {
     path: '404',
@@ -49,7 +51,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Trang chủ'
     },
     children: [
       {
@@ -83,6 +85,13 @@ export const routes: Routes = [
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: {
+          title: 'Hồ sơ người dùng'
+        }
       }
     ]
   },

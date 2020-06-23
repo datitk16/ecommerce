@@ -30,9 +30,10 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   submit(data) {
-    this.request = data;
-    this.customerService.createCustomer(this.request).subscribe(customer => {
-      console.log(customer)
-    })
+    console.log(data);
+    // this.request = data;
+    // this.customerService.createCustomer(this.request).subscribe(customer => {
+    //   console.log(customer)
+    // })
   }
 }
