@@ -40,9 +40,15 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Danh mục sản phẩm',
-    url: '/theme/typography',
+    url: '/category',
     icon: 'icon-folder'
   },
+  {
+    name: 'Tin nhắn',
+    url: '/category',
+    icon: 'icon-folder'
+  },
+
 
 
 ];

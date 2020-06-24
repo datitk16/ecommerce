@@ -42,6 +42,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { CoreModule } from './core/core.module';
 import { ProfileComponent } from './views/profile/profile.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CategoryModule } from './views/category/category.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -61,7 +62,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     AuthenticationModule,
     CoreModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   declarations: [
     AppComponent,

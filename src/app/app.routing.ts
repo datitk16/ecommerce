@@ -83,8 +83,8 @@ export const routes: Routes = [
         loadChildren: () => import('./views/products-management/product-management.module').then(m => m.ThemeModule)
       },
       {
-        path: 'widgets',
-        loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+        path: 'category',
+        loadChildren: () => import('./views/category/category.module').then(m => m.CategoryModule)
       },
       {
         path: 'profile',

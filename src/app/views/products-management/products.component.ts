@@ -38,6 +38,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     this.categoriesService.getCategoryLevel1().subscribe((category) => {
       this.categoryLevel1 = category;
+      console.log(category)
     });
 
     this.refresh();

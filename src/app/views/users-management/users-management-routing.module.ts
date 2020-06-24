@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Users'
+      title: 'Người dùng'
     },
     children: [
       {
@@ -20,21 +20,21 @@ const routes: Routes = [
         path: 'verify-account',
         component: AccountComponent,
         data: {
-          title: 'Veryfy Account'
+          title: 'Xác thực tài khoản'
         }
       },
       {
         path: 'verify-product',
         component: ProductsComponent,
         data: {
-          title: 'Verifyproduct'
+          title: 'Xác thực sản phẩm'
         }
       },
       {
         path: 'user',
         component: UsersComponent,
         data: {
-          title: 'User'
+          title: 'Danh sách người dùng'
         }
       }
     ]

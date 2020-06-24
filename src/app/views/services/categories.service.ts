@@ -25,4 +25,12 @@ export class CategoriesService {
     return this.httpClient.post<CategoryLevel2>(this.categoriesLevel2_url + '/categoriesLevel2ByLevel1Id', request);
   }
 
+  deleteCategory(request: string): Observable<object> {
+    return this.httpClient.post<object>(this.categoriesLevel2_url + '/delete', { id: request });
+  }
+
+  updateCategory(id: string, name: string): Observable<CategoryLevel2> {
+    return this.httpClient.post<CategoryLevel2>(this.categoriesLevel2_url + '/update', { id: id, name: name });
+  }
+
 }

@@ -1,33 +1,34 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CategoryComponent } from './category/category.component';
 
-import { ProductsComponent } from './products.component';
-import { TypographyComponent } from './typography.component';
 
 const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Quản lý sản phẩm'
+      title: 'Quản lý danh mục sản phẩm'
     },
     children: [
       {
         path: '',
-        redirectTo: 'products-management'
+        redirectTo: 'category'
       },
       {
         path: '',
-        component: ProductsComponent,
+        component: CategoryComponent,
         data: {
-          title: 'Chi tiết ds sản phẩm'
+          title: 'Chi tiết danh mục'
         }
       },
+
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ThemeRoutingModule {}
+export class CategoryRoutingModule {}
