@@ -4,7 +4,7 @@ import { CategoryLevel1 } from '../models/categoryLevel1.model';
 import { Observable } from 'rxjs';
 import { Constants } from '../../core/constants';
 import { CategoryLevel2 } from '../models/categoryLevel2.model';
-import { CategoryLevel2Request } from '../models/categoryLevel2-request.model';
+import { CategoryLevel2Request, CreateCategory2Request } from '../models/categoryLevel2-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,10 @@ export class CategoriesService {
 
   updateCategory(id: string, name: string): Observable<CategoryLevel2> {
     return this.httpClient.post<CategoryLevel2>(this.categoriesLevel2_url + '/update', { id: id, name: name });
+  }
+
+  createCategory2(request: CreateCategory2Request): Observable<CategoryLevel2> {
+    return this.httpClient.post<CategoryLevel2>(this.categoriesLevel2_url, request);
   }
 
 }

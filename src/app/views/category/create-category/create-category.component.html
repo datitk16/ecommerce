@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <strong>Danh mục </strong>
+    <small>Thêm mới danh mục sản phẩm</small>
+  </div>
+  <div class="card-body">
+    <div class="col-lg-6">
+      <form [formGroup]="createProductForm" (ngSubmit)="submit(createProductForm.value)">
+        <div class="form-group">
+            <select formControlName="cateLeve1Id" id="disabledSelect" required
+              class="form-control">
+              <option value="" disabled>Chọn danh mục cấp 1</option>
+              <option *ngFor="let categorieslv1 of categoryLevel1.items" [value]="categorieslv1._id">{{categorieslv1.name}}
+              </option>
+            </select>
+        </div>
+        <div class="form-group ">
+          <label for="city">Nhập danh mục cấp 2</label>
+          <input type="text" required class="form-control" formControlName="name" id="city" placeholder="Nhập tên danh mục" required>
+        </div>
+        <div class="form-group d-flex btn-submit">
+          <button type="submit" [disabled]="!createProductForm.valid" class="btn btn-primary">Tạo mới</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
