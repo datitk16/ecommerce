@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://kltn-resales.herokuapp.com/'
+  baseUrl: 'http://localhost:6789/'
 };

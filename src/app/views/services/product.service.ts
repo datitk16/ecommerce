@@ -31,6 +31,6 @@ export class ProductService {
   }
 
   public verifyProduct(request: DeleteRequest): Observable<ProductItem> {
-    return this.httpClient.post<ProductItem>(this.product_url + '/verify', request);
+    return this.httpClient.post<ProductItem>(this.product_url + 'verify', request);
   }
 }

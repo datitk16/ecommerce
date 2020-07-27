@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { login, loginFailed, customerProfileLoaded, authenticated, loadCustomerProfile, logout } from './authentication.actions';
 import { mergeMap, switchMap, tap, throttleTime } from 'rxjs/operators';
 import { of } from 'rxjs';
-
+import Swal from 'sweetalert2';
 @Injectable()
 export class AuthenticationEffects {
 
@@ -17,6 +17,13 @@ export class AuthenticationEffects {
       mergeMap(({ email, password }) => this.userService.login(email, password)),
       switchMap(customer => {
         if (customer.token) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Đăng nhập thành công!',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.userService.setCustomer(customer);
           return [
             customerProfileLoaded({ customer }),

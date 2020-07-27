@@ -34,23 +34,10 @@ export const navItems: INavData[] = [
     ]
   },
   {
-    name: 'Quản lý bình luận',
-    url: '/theme/typography',
-    icon: 'icon-bubbles'
-  },
-  {
     name: 'Danh mục sản phẩm',
     url: '/category',
     icon: 'icon-folder'
   },
-  {
-    name: 'Tin nhắn',
-    url: '/category',
-    icon: 'icon-folder'
-  },
-
-
-
 ];
 
 /*

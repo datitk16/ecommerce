@@ -53,6 +53,7 @@
     "moment": "^2.24.0",
     "mutationobserver-shim": "^0.3.5",
     "ng2-charts": "^2.3.0",
+    "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^5.6.1",
     "ngx-cookie-service": "^3.0.4",
     "ngx-perfect-scrollbar": "^9.0.0",

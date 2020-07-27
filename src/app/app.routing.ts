@@ -46,6 +46,7 @@ export const routes: Routes = [
       title: 'Register Page'
     }
   },
+
   {
     path: '',
     canActivate: [AuthGuard],
@@ -92,8 +93,13 @@ export const routes: Routes = [
         data: {
           title: 'Hồ sơ người dùng'
         }
-      }
+      },
+
     ]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   { path: '**', component: P404Component }
 ];

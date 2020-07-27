@@ -48,9 +48,9 @@
       <div class="card-body">
         <table class="table table-bordered">
           <thead>
-            <tr>
+            <tr style="text-align: center">
               <th>Sản phẩm</th>
-              <th>Người đăng</th>
+              <th>Mô tả</th>
               <th>Ngày đăng</th>
               <th>Status</th>
             </tr>
@@ -58,10 +58,10 @@
           <tbody>
             <tr *ngFor="let product of products">
               <td>{{product.subject}}</td>
-              <td>{{product.account_name}}</td>
+              <td style="width:40%">{{product.body}}</td>
               <td>{{product.date|date:'medium'}}</td>
               <td>
-                <button type="button" class="btn btn-block btn-primary">Sửa </button>
+                <!-- <button type="button" class="btn btn-block btn-primary">Sửa </button> -->
                 <button (click)="deleteProduct(product._id)" type="button"
                   class="btn btn-block btn-primary">Xóa</button>
               </td>

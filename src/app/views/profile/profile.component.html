@@ -1,12 +1,11 @@
-<div class="container" style="width:50%" >
+<div class="container" style="width:50%">
   <header>
   </header>
   <main>
     <div class="row">
       <div class=" profile ">
         <div class="photo-left">
-          <img class="photo"
-            src="https://i.pinimg.com/564x/e2/4e/ff/e24effa123797fd2099fbcf3060585bf.jpg" />
+          <img class="photo" src={{user.avatar}} />
           <div class="active"></div>
         </div>
         <div class="account d-flex" style="width:100%">
@@ -17,8 +16,8 @@
           </div>
           <div class="change-password " style="width: 60%;">
             <h4 class="name">Thay đổi mật khẩu</h4>
-              <form>
-                <p class="info">Mật khẩu cũ</p>
+            <!-- <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()"> -->
+            <p class="info">Mật khẩu cũ</p>
                 <div class="input-group " >
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
@@ -34,11 +33,10 @@
                   <input #newPassword [disabled]="!verifyStatus" type="text" class="form-control" placeholder="Nhập mật khẩu mới" >
                   <button (click)="sendNewPassword(newPassword.value)" [disabled]="!verifyStatus" type="submit" class="btn btn-sm btn-primary"> Xác nhận</button>
                 </div>
-              </form>
+            <!-- </form> -->
           </div>
         </div>
         <div class="social">
         </div>
       </div>
     </div>
-
