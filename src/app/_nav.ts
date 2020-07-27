@@ -30,7 +30,8 @@ export const navItems: INavData[] = [
         name: 'Người dùng',
         url: '/users-management/user',
         icon: '  '
-      }
+      },
+
     ]
   },
   {

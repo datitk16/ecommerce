@@ -23,8 +23,8 @@ export class CustomerService {
     return this.httpClient.post<Customers>(this.user_url + '/search', request);
   }
 
-  public createCustomer(request: CreateCustomerRequest): Observable<Customers> {
-    return this.httpClient.post<Customers>(this.user_url, request);
+  public createCustomer(request: CreateCustomerRequest): Observable<CustomerItem> {
+    return this.httpClient.post<CustomerItem>(this.user_url, request);
   }
 
   public deleteCustomer(request: DeleteCustomerRequest) {

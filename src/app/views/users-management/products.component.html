@@ -8,14 +8,14 @@
               class="form-control" placeholder="Email" autocomplete="email">
             <span class="input-group-append">
               <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary"><i class="fa fa-search"></i>
-                Search</button>
+                Tìm kiếm</button>
             </span>
           </div>
         </div>
       </div>
     </div>
     <div class="col-lg-1">
-      <button type="button" class="btn btn-primary" (click)="refresh()"><i class="fa fa-refresh"></i> Refresh</button>
+      <button type="button" class="btn btn-primary" (click)="refresh()"><i class="fa fa-refresh"></i>Làm mới</button>
     </div>
     <div class="col-lg-3">
       <select (change)="selectedCategoryLevel1($event.target.value)" id="disabledSelect"
