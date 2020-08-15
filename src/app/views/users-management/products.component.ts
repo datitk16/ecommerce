@@ -46,6 +46,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   refresh() {
     this.productService.getProductList().pipe(untilDestroyed(this)).subscribe(products => {
+      console.log(products)
       plainToClass(Products, products);
       this.products = products.items.filter(x => !x.authenticate);
     });
